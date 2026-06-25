@@ -1,5 +1,7 @@
 package com.example;
 
+// 例外テスト用のライブラリ（AssertJ）をインポート
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -32,5 +34,16 @@ public class AppTest {
     @Test
     void mulテスト_正常() {
         assertEquals(12, calc.mul(4, 3));
+    }
+
+    // ★ここから課題2の例外テストを追加
+    @Test
+    void divテスト_例外() {
+        // ArithmeticException（0での割り算エラー）が発生することを検証する
+        assertThatExceptionOfType(ArithmeticException.class)
+            .isThrownBy(() -> {
+                calc.div(4, 0); // わざと0で割ってエラーを起こす
+            })
+            .withMessageContaining("/ by zero"); // エラーメッセージにこの文字が含まれるかチェック
     }
 }
