@@ -9,7 +9,8 @@ public class UserTest {
     void 正常系_ユーザー管理コード登録参照() {
         User user = new User("A001");
 
-        user.setCode("B001");
+        user.
+        setCode("B001");
 
         assertThat(user.getCode()).isEqualTo("B001");
     }
